@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 
 function User(props: userProps) {
-  const { fullName, userName, avatarImage, numberOfMessage } = props;
+  const { fullName, avatarImage, numberOfMessage } = props;
   return (
     <React.Fragment>
       <Center>
@@ -47,9 +47,8 @@ function User(props: userProps) {
   );
 }
 interface userProps {
-  fullName: string;
+  fullName?: string;
   avatarImage?: string;
-  userName: string;
   numberOfMessage: Number;
 }
 

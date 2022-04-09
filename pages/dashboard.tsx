@@ -5,27 +5,37 @@ import MessageBox from "./Comp/messageBox";
 import { useUser, Auth } from "@supabase/supabase-auth-helpers/react";
 import { withAuthRequired } from "@supabase/supabase-auth-helpers/nextjs";
 import { supabaseClient } from "@supabase/supabase-auth-helpers/nextjs";
+import { useAppSelector, useAppDispatch } from "./hooks/store";
+import { getUser } from "./context/userSlice";
 
-export default function Dashboard(props: IDashBoardProps) {
-  const { user } = props;
-  console.log("User");
-  console.log(user);
+export default function Dashboard() {
+  const userData = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+  dispatch(getUser());
+
   async function getData() {
     const { data, error } = await supabaseClient
       .from("message")
       .select()
       .eq("userName", "gt010");
+    console.log(data);
+    getUserName();
   }
   getData();
-  console.log(user);
+
+  async function getUserName() {
+    const { data, error } = await supabaseClient
+      .from("userData")
+      .select()
+      .eq("email", "tewarig0@gmail.com");
+  }
 
   return (
     <Box bg="#f5feff" w="100%" p={10} alignContent={"center"}>
       <User
-        fullName={user?.user_metadata?.full_name}
-        userName={user?.user_metadata?.user_name}
+        fullName={userData.fullName}
         numberOfMessage={50}
-        avatarImage={user?.user_metadata?.avatar_url}
+        avatarImage={userData.avatarUrl}
       />
 
       <br />
@@ -48,19 +58,4 @@ export default function Dashboard(props: IDashBoardProps) {
   );
 }
 
-interface IDashBoardProps {
-  user: userProps;
-}
-interface userProps {
-  id: string;
-  email: string;
-  providers: [string];
-  user_metadata: {
-    avatar_url: string;
-    email: string;
-    full_name: string;
-    preferred_username: string;
-    user_name: string;
-  };
-}
 export const getServerSideProps = withAuthRequired();

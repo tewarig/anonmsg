@@ -14,7 +14,7 @@ function Message() {
     const { data, error } = await supabaseClient
       .from("message")
       .insert([
-        { message: "something", hint: "meow meow", userName: "meowMeow" },
+        { message: "something", hint: "meow meow", userName: userName },
       ]);
 
     console.log(data);
@@ -22,7 +22,7 @@ function Message() {
       console.log(error);
     }
   }
-
+  // use router params here :)
   return (
     <Box bg="#f5feff" w="100%" p={10} alignContent={"center"}>
       <Center>
