@@ -8,6 +8,7 @@ import {
   Text,
   Button,
 } from "@chakra-ui/react";
+import Link from "next/link";
 
 function User(props: userProps) {
   const { fullName, avatarImage, numberOfMessage } = props;
@@ -19,14 +20,16 @@ function User(props: userProps) {
             <Box>
               {" "}
               <Avatar name={fullName} src={avatarImage} size={"2xl"} />
-              <Text
-                bgGradient="linear(to-l, #20bf55 ,#01baef)"
-                bgClip="text"
-                fontSize="large"
-                ml="5%"
-              >
-                {fullName}
-              </Text>
+              {fullName !== "" && (
+                <Text
+                  bgGradient="linear(to-l, #20bf55 ,#01baef)"
+                  bgClip="text"
+                  fontSize="large"
+                  ml="5%"
+                >
+                  {fullName}
+                </Text>
+              )}
             </Box>
             <Box>
               <Button
@@ -42,6 +45,17 @@ function User(props: userProps) {
             </Box>{" "}
           </WrapItem>
         </Wrap>
+      </Center>
+      <Center>
+        {fullName === "" && (
+          <Button mt="5" colorScheme={"green"}>
+            <Link href="/profile">
+              <a>
+                <Text> You Need to set a user Name First </Text>
+              </a>
+            </Link>
+          </Button>
+        )}
       </Center>
     </React.Fragment>
   );

@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { supabaseClient } from "@supabase/supabase-auth-helpers/nextjs";
 
@@ -14,6 +15,7 @@ const initialState: UserMessage = {
   userName: "",
   hint: "",
 };
+
 const messageSlice = createSlice({
   name: "message",
   initialState,
