@@ -8,10 +8,11 @@ import Router from "next/router";
 import getUserName from "./hooks/getUserName";
 
 export default function Profile() {
+  const { userName } = getUserName();
+
   const [userNameInput, setUserNameInput] = useState<string>();
   const userProfile = useAppSelector((state) => state.user.avatarUrl);
   const userEmail = useAppSelector((state) => state.user.email);
-  const { userName } = getUserName();
   const notify = () =>
     toast.error("Oops! that user name have been taken.. like your crush");
 
@@ -50,6 +51,7 @@ export default function Profile() {
       Router.push("/dashboard");
     }, 2000);
   }
+  // TODO: improve loding and not found
   return (
     <React.Fragment>
       <Box margin={"5%"}>

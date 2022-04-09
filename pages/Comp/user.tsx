@@ -21,14 +21,16 @@ function User(props: userProps) {
               {" "}
               <Avatar name={fullName} src={avatarImage} size={"2xl"} />
               {fullName !== "" && (
-                <Text
-                  bgGradient="linear(to-l, #20bf55 ,#01baef)"
-                  bgClip="text"
-                  fontSize="large"
-                  ml="5%"
-                >
-                  {fullName}
-                </Text>
+                <Center>
+                  <Text
+                    bgGradient="linear(to-l, #20bf55 ,#01baef)"
+                    bgClip="text"
+                    fontSize="large"
+                    ml="5%"
+                  >
+                    {fullName}
+                  </Text>
+                </Center>
               )}
             </Box>
             <Box>
