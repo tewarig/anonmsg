@@ -1,33 +1,33 @@
-import { useUser, Auth } from '@supabase/supabase-auth-helpers/react'
-import { supabaseClient } from '@supabase/supabase-auth-helpers/nextjs'
-import { useEffect, useState } from 'react'
+import { useUser, Auth } from "@supabase/supabase-auth-helpers/react";
+import { supabaseClient } from "@supabase/supabase-auth-helpers/nextjs";
+import { useEffect, useState } from "react";
 
 const LoginPage = () => {
-  const { user, error } = useUser()
-  const [data, setData] = useState<any>({})
+  const { user, error } = useUser();
+  const [data, setData] = useState({});
 
   useEffect(() => {
     async function loadData() {
-      const { data } = await supabaseClient.from('test').select('*')
-      setData(data)
+      const { data: any } = await supabaseClient.from("test").select("*");
+      setData(data);
     }
     // Only run query once user is logged in.
-    if (user) loadData()
-  }, [user])
+    if (user) loadData();
+  }, [user]);
 
   if (!user)
     return (
       <>
-        {/* {error && <p>{error.message}</p>} */}
+        {error && <p>{error.message}</p>}
         <Auth
-          onlyThirdPartyProviders={true}
+          onlyThirdPartyProviders={false}
           supabaseClient={supabaseClient}
-          providers={['google', 'github','twitter']}
+          providers={["google", "github", "twitter"]}
           socialLayout="vertical"
           socialButtonSize="xlarge"
         />
       </>
-    )
+    );
 
   return (
     <>
@@ -37,7 +37,7 @@ const LoginPage = () => {
       <p>client-side data fetching with RLS</p>
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;
