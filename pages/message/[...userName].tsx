@@ -7,6 +7,8 @@ import {
   Icon,
   Center,
   Fade,
+  Spinner,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Avatar, Wrap, WrapItem, Text } from "@chakra-ui/react";
@@ -28,6 +30,8 @@ function Message() {
   const [message, setMessage] = useState<string>("");
   const [hint, setHint] = useState<any>("");
   const [error, setError] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [isLargerThan1000] = useMediaQuery("(min-width: 1000px)");
 
   async function getUserData() {
     const { data, error } = await supabaseClient
@@ -49,13 +53,19 @@ function Message() {
   }, [userName]);
   const { width, height } = useWindowSize();
 
+  function handlSubmit() {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      Something();
+    }, 500);
+  }
+
   async function Something() {
     if (message !== "") {
       const { data, error } = await supabaseClient
         .from("message")
         .insert([{ message: message, hint: hint, userName: userName?.[0] }]);
-      console.log(data);
-      console.log(error);
 
       setShowConfetti(true);
       setTimeout(() => {
@@ -80,7 +90,7 @@ function Message() {
     return <React.Fragment>Nothing Found</React.Fragment>;
   }
   return (
-    <Box bg="#f5feff" w="100%" p={10} alignContent={"center"}>
+    <Box bg="#fdfaff" w="100%" p={10} alignContent={"center"}>
       {showConfetti && <Confetti width={width} height={height} />}
       <Center>
         <Wrap align={"center"}>
@@ -115,6 +125,7 @@ function Message() {
           }
           size="xl"
           borderRadius={8}
+          height={isLargerThan1000 ? "240px" : "200px"}
           margin={5}
           padding={5}
           value={message}
@@ -139,14 +150,26 @@ function Message() {
 
       <Center>
         <Button
-          colorScheme={"teal"}
+          colorScheme={"purple"}
           margin={5}
           borderRadius={8}
-          onClick={Something}
+          onClick={handlSubmit}
+          disabled={loading}
         >
-          Send <Icon as={ChevronRightIcon} w={6} h={6} />
+          {loading ? (
+            <Spinner />
+          ) : (
+            <React.Fragment>
+              Send <Icon as={ChevronRightIcon} w={6} h={6} />{" "}
+            </React.Fragment>
+          )}
         </Button>
       </Center>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <ToastContainer />
     </Box>
   );

@@ -22,7 +22,7 @@ function MessageBox(props: MessageBoxProps) {
   return (
     <React.Fragment>
       <Flex
-        backgroundColor={"#d7fcf4"}
+        backgroundColor={"#f3e8fa"}
         borderRadius={10}
         padding={25}
         marginTop={5}
@@ -37,11 +37,11 @@ function MessageBox(props: MessageBoxProps) {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Message</DrawerHeader>
+          <DrawerHeader backgroundColor={"#fdfaff"}>Message</DrawerHeader>
 
-          <DrawerBody>
+          <DrawerBody backgroundColor={"#fdfaff"}>
             <Flex
-              backgroundColor={"#d7fcf4"}
+              backgroundColor={"#f3e8fa"}
               borderRadius={10}
               padding={25}
               marginTop={5}
@@ -49,12 +49,14 @@ function MessageBox(props: MessageBoxProps) {
               flexDirection={"row"}
               onClick={onOpen}
             >
-              <Text>{message}</Text>
+              <Text color="#333">{message}</Text>
             </Flex>
             <br />
-            <Text ml="5%">who messaged me this ?🤔</Text>
+            <Text ml="5%" color="#333">
+              who messaged me this ?🤔
+            </Text>
             <Flex
-              backgroundColor={"#d7fcf4"}
+              backgroundColor={"#f3e8fa"}
               borderRadius={10}
               padding={25}
               marginTop={5}
@@ -62,7 +64,7 @@ function MessageBox(props: MessageBoxProps) {
               flexDirection={"row"}
               onClick={onOpen}
             >
-              <Text>{message}</Text>
+              <Text color="#333">{message}</Text>
             </Flex>
           </DrawerBody>
 

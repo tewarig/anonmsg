@@ -23,7 +23,7 @@ function User(props: userProps) {
               {fullName !== "" && (
                 <Center>
                   <Text
-                    bgGradient="linear(to-l, #20bf55 ,#01baef)"
+                    bgGradient="linear(to-l,  #8000ff, #8000f0)"
                     bgClip="text"
                     fontSize="large"
                     ml="5%"
@@ -37,7 +37,7 @@ function User(props: userProps) {
               <Button
                 ml="-70%"
                 borderRadius={80}
-                colorScheme="teal"
+                colorScheme="purple"
                 padding={1}
                 zIndex={10}
                 boxShadow="inner"

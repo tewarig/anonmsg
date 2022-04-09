@@ -21,7 +21,7 @@ export default function Dashboard() {
   dispatch(setUserName());
 
   return (
-    <Box bg="#f5feff" w="100%" p={10} alignContent={"center"}>
+    <Box bg="#fdfaff" w="100%" height={"100%"} p={10} alignContent={"center"}>
       <User
         fullName={userName}
         numberOfMessage={messageCount}
@@ -32,14 +32,14 @@ export default function Dashboard() {
       <br />
       <Center>
         <Text
-          bgGradient="linear(to-l, #20bf55 ,#01baef)"
+          bgGradient="linear(to-l,  #8000ff ,#8000f0)"
           bgClip="text"
-          fontSize="xxx-large"
+          fontSize="2xl"
         >
           Messages
         </Text>
       </Center>
-      <Divider bgGradient="linear(to-l, #20bf55 ,#01baef)" />
+      <Divider bgGradient="linear(to-l,  #8000ff , #8000f0)" />
       <br />
       <MessageDialog />
     </Box>

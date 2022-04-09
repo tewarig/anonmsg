@@ -1,6 +1,7 @@
 import { useUser, Auth } from "@supabase/supabase-auth-helpers/react";
 import { supabaseClient } from "@supabase/supabase-auth-helpers/nextjs";
 import { useEffect, useState } from "react";
+import Router from "next/router";
 
 const LoginPage = () => {
   const { user, error } = useUser();
@@ -12,32 +13,14 @@ const LoginPage = () => {
       setData(data);
     }
     // Only run query once user is logged in.
-    if (user) loadData();
+    if (user) {
+      Router.push("/dashboard");
+    }
   }, [user]);
 
-  if (!user)
-    return (
-      <>
-        {error && <p>{error.message}</p>}
-        <Auth
-          onlyThirdPartyProviders={false}
-          supabaseClient={supabaseClient}
-          providers={["google", "github", "twitter"]}
-          socialLayout="vertical"
-          socialButtonSize="xlarge"
-        />
-      </>
-    );
+  if (!user) return <>{error && <p>{error.message}</p>}</>;
 
-  return (
-    <>
-      <button onClick={() => supabaseClient.auth.signOut()}>Sign out</button>
-      <p>user:</p>
-      <pre>{JSON.stringify(user, null, 2)}</pre>
-      <p>client-side data fetching with RLS</p>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </>
-  );
+  return <></>;
 };
 
 export default LoginPage;
