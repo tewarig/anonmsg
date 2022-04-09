@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 
 const LoginPage = () => {
   const { user, error } = useUser()
-  const [data, setData] = useState({})
+  const [data, setData] = useState<any>({})
 
   useEffect(() => {
     async function loadData() {
@@ -18,12 +18,12 @@ const LoginPage = () => {
   if (!user)
     return (
       <>
-        {error && <p>{error.message}</p>}
+        {/* {error && <p>{error.message}</p>} */}
         <Auth
-          // view="update_password"
+          onlyThirdPartyProviders={true}
           supabaseClient={supabaseClient}
-          providers={['google', 'github']}
-          socialLayout="horizontal"
+          providers={['google', 'github','twitter']}
+          socialLayout="vertical"
           socialButtonSize="xlarge"
         />
       </>
