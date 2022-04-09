@@ -7,14 +7,15 @@ import { useAppSelector } from "./hooks/store";
 import Router from "next/router";
 import getUserName from "./hooks/getUserName";
 
+import messageValues from "../const";
+
 export default function Profile() {
   const { userName } = getUserName();
 
   const [userNameInput, setUserNameInput] = useState<string>();
   const userProfile = useAppSelector((state) => state.user.avatarUrl);
   const userEmail = useAppSelector((state) => state.user.email);
-  const notify = () =>
-    toast.error("Oops! that user name have been taken.. like your crush");
+  const notify = () => toast.error(messageValues.userNameTakenWarning);
 
   useEffect(() => {
     console.log(userName);
@@ -35,7 +36,7 @@ export default function Profile() {
         notify();
       }
     } else {
-      toast.error("Don't leave the text input empty... like your heart");
+      toast.error(messageValues.userNameEmptyWarning);
     }
   }
   async function putValueInDataBase() {
@@ -46,7 +47,7 @@ export default function Profile() {
         email: userEmail,
       },
     ]);
-    toast.success("Now that userName is yours forever");
+    toast.success(messageValues.userNameSucessWarning);
     setTimeout(() => {
       Router.push("/dashboard");
     }, 2000);

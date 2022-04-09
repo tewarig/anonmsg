@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Center, Text, Divider } from "@chakra-ui/react";
 import User from "./Comp/user";
-import MessageBox from "./Comp/messageBox";
 import { withAuthRequired } from "@supabase/supabase-auth-helpers/nextjs";
 import { useAppSelector, useAppDispatch } from "./hooks/store";
 
@@ -15,7 +14,7 @@ import { setUserName } from "./slices/userNameSlice";
 export default function Dashboard() {
   const userData = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
-  const { messageCount } = getMessage();
+  const { messageCount, data } = getMessage();
   const { userName } = getUserName();
 
   dispatch(getUser());

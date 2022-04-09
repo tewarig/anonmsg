@@ -14,7 +14,7 @@ export default function getMessage() {
       .select()
       .eq("userName", userName);
     const receivedMessage = data ? data : [];
-    setData(receivedMessage);
+    setData(receivedMessage.reverse());
     const message = data ? data.length : 0;
 
     setMessageCount(message);

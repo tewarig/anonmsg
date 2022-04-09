@@ -16,6 +16,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 import Confetti from "react-confetti";
 import useWindowSize from "react-use/lib/useWindowSize";
+import messageValues from "../../const";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -52,16 +53,19 @@ function Message() {
     if (message !== "") {
       const { data, error } = await supabaseClient
         .from("message")
-        .insert([
-          { message: "something", hint: "meow meow", userName: userName },
-        ]);
+        .insert([{ message: message, hint: hint, userName: userName?.[0] }]);
+      console.log(data);
+      console.log(error);
+
       setShowConfetti(true);
       setTimeout(() => {
         setShowConfetti(false);
       }, 6000);
-      toast.success("Message Send Sucessfully");
+      toast.success(messageValues.messageSendSucess);
+      setMessage("");
+      setHint("");
     } else {
-      toast.error("Don't left the message empty just like your heart.");
+      toast.error(messageValues.emptyBoxWarning);
       setError(true);
       setTimeout(() => {
         setError(false);
