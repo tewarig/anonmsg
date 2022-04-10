@@ -22,8 +22,11 @@ export const fetchToken = (setTokenFound) => {
   })
     .then((currentToken) => {
       if (currentToken) {
-        console.log("current token for client: ", currentToken);
+        console.log(currentToken);
         setTokenFound(true);
+        if (typeof window !== "undefined") {
+          localStorage.setItem("userToken", JSON.stringify(currentToken));
+        }
         // Track the token -> client mapping, by sending to backend server
         // show on the UI that permission is secured
       } else {

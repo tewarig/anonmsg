@@ -7,8 +7,12 @@ function MessageDialog() {
 
   return (
     <React.Fragment>
-      {data.map((message) => (
-        <MessageBox message={message.message} messageHint={message.hint} />
+      {data.map((message, index) => (
+        <MessageBox
+          key={index}
+          message={message.message}
+          messageHint={message.hint}
+        />
       ))}
     </React.Fragment>
   );

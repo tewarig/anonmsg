@@ -23,6 +23,13 @@ export default function Profile() {
       Router.push("/dashboard");
     }
   }, [userName]);
+  function getUserToken() {
+    if (typeof window !== "undefined") {
+      const token = JSON.parse(localStorage.getItem("userToken") || " ");
+      return token;
+    }
+  }
+
   async function checkUserName() {
     if (userNameInput !== "") {
       const { data, error } = await supabaseClient
@@ -39,14 +46,18 @@ export default function Profile() {
       toast.error(messageValues.userNameEmptyWarning);
     }
   }
+  console.log(getUserToken());
+
   async function putValueInDataBase() {
     const { data, error } = await supabaseClient.from("userData").insert([
       {
         userName: userNameInput,
         userProfile: userProfile,
         email: userEmail,
+        userToken: getUserToken(),
       },
     ]);
+    console.log(data);
     toast.success(messageValues.userNameSucessWarning);
     setTimeout(() => {
       Router.push("/dashboard");

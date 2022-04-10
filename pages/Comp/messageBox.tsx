@@ -17,7 +17,6 @@ import { ChevronRightIcon } from "@chakra-ui/icons";
 function MessageBox(props: MessageBoxProps) {
   const { message, messageHint } = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = React.useRef();
 
   return (
     <React.Fragment>

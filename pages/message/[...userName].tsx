@@ -14,6 +14,7 @@ import { Avatar, Wrap, WrapItem, Text } from "@chakra-ui/react";
 import { supabaseClient } from "@supabase/supabase-auth-helpers/nextjs";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
+import { ChevronRightIcon } from "@chakra-ui/icons";
 
 import Confetti from "react-confetti";
 import useWindowSize from "react-use/lib/useWindowSize";

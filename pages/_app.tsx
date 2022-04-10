@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const [isTokenFound, setTokenFound] = useState(false);
+  const [token, setToken] = useState<string>();
 
   useEffect(() => {
     if ("serviceWorker" in navigator) {
@@ -41,7 +42,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     }, 2000);
   });
 
-  fetchToken(setTokenFound);
+ fetchToken(setTokenFound);
+ 
 
   return (
     <ChakraProvider>

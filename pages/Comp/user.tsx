@@ -13,7 +13,8 @@ import Link from "next/link";
 function User(props: userProps) {
   const { fullName, avatarImage, numberOfMessage } = props;
   return (
-    <React.Fragment>
+    <React.Fragment >
+      
       <Center>
         <Wrap align={"center"}>
           <WrapItem>
