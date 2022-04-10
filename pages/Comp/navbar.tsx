@@ -43,6 +43,9 @@ export default function Nav() {
     supabaseClient.auth.signOut();
     Router.push(`${process.env.NEXT_PUBLIC_SITE_URL}`);
   };
+  const redicet = () => {
+    Router.push(`${process.env.NEXT_PUBLIC_SITE_URL}`);
+  };
   return (
     <>
       <Box bg={useColorModeValue("white", "gray.900")} px={4}>
@@ -53,6 +56,7 @@ export default function Nav() {
                 bgGradient="linear(to-l, #8000ff ,#8000f0)"
                 bgClip="text"
                 fontSize="xl"
+                onClick={redicet}
               >
                 {" "}
                 AnonMsg <Badge borderRadius={"8%"}>Beta</Badge>

@@ -33,7 +33,7 @@ import { LinkIcon, CopyIcon } from "@chakra-ui/icons";
 import { ToastContainer, toast } from "react-toastify";
 import Share from "../lottie/social.json";
 import messageValues from "../const";
-import { Router } from "next/router";
+import Router  from "next/router";
 import NoSSR from "./Comp/noSSR";
 
 export default function Dashboard() {
@@ -56,6 +56,9 @@ export default function Dashboard() {
   };
   useEffect(() => {
     if (userData === {}) {
+      Router.push(`${process.env.NEXT_PUBLIC_SITE_URL}`);
+    }
+    if (userData.email === undefined) {
       Router.push(`${process.env.NEXT_PUBLIC_SITE_URL}`);
     }
   }, [userData]);
