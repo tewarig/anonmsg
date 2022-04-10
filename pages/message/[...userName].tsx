@@ -9,6 +9,9 @@ import {
   Fade,
   Spinner,
   useMediaQuery,
+  SkeletonCircle,
+  SkeletonText,
+  Skeleton,
 } from "@chakra-ui/react";
 import { Avatar, Wrap, WrapItem, Text } from "@chakra-ui/react";
 import { supabaseClient } from "@supabase/supabase-auth-helpers/nextjs";
@@ -20,6 +23,8 @@ import Confetti from "react-confetti";
 import useWindowSize from "react-use/lib/useWindowSize";
 import messageValues from "../../const";
 import axios from "axios";
+import Lottie from "lottie-react";
+import Cat from "../../lottie/cat.json";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -71,13 +76,13 @@ function Message() {
         .insert([{ message: message, hint: hint, userName: userName?.[0] }]);
 
       setShowConfetti(true);
-    
+
       axios({
         method: "post",
         url: "https://fcm.googleapis.com/fcm/send",
         headers: {
           "Content-Type": "application/json",
-         "Authorization": authKey,
+          Authorization: authKey,
         },
         data: {
           to: userData.userToken,
@@ -104,11 +109,46 @@ function Message() {
   }
 
   if (userData === null) {
-    return <React.Fragment>Loading...</React.Fragment>;
+    return (
+      <React.Fragment>
+        <Box padding="6" boxShadow="lg" bg="white">
+          <Center>
+            <SkeletonCircle size="10" />
+          </Center>
+          <Skeleton height="20px" mt="1%" />
+          <Skeleton height="20px" mt="1%" />
+          <Skeleton height="20px" mt="1%" />
+          <Skeleton height="20px" mt="1%" />
+          <Skeleton height="20px" mt="1%" />
+        </Box>
+      </React.Fragment>
+    );
   }
-  if (userData === []) {
-    return <React.Fragment>Nothing Found</React.Fragment>;
+  if (userData === [] || userData === undefined) {
+    return (
+      <React.Fragment>
+        {" "}
+        <Center>
+          <Text> Opps! No user With such userName...</Text>
+        </Center>
+        <Center>
+          <Box
+            width={{
+              md: "50%",
+              lg: "25%",
+            }}
+            height={{
+              md: "50%",
+              lg: "25%",
+            }}
+          >
+            <Lottie animationData={Cat} loop={true} autoPlay={true} />
+          </Box>
+        </Center>
+      </React.Fragment>
+    );
   }
+  console.log(userData);
   return (
     <Box bg="#fdfaff" w="100%" p={10} alignContent={"center"}>
       {showConfetti && <Confetti width={width} height={height} />}

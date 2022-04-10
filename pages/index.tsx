@@ -18,7 +18,8 @@ import think from "../lottie/think.json";
 const LoginPage = () => {
   const { user, error } = useUser();
   const [data, setData] = useState({});
-  const [isLargerThan1000] = useMediaQuery("(min-width: 1000px)");
+  const [isLargerThan1000] = useMediaQuery("(min-width: 800px)");
+  console.log(isLargerThan1000);
 
   useEffect(() => {
     async function loadData() {
@@ -53,18 +54,32 @@ const LoginPage = () => {
 
   return (
     <React.Fragment>
-      <Flex flexDirection={isLargerThan1000 ? "row" : "column"}>
+      <Flex flexDirection={isLargerThan1000 ? "row" : "column-reverse"}>
         <Box
-          width={isLargerThan1000 ? "50%" : "100%"}
-          height={isLargerThan1000 ? "50%" : "100%"}
+          width={{
+            md: "100%",
+            lg: "50%",
+          }}
+          height={{
+            md: "100",
+            lg: "50%",
+          }}
         >
           <Flex flexDirection={"column"} margin="5%" mt="30%">
-            <Text fontSize={"2xl"}> Give and Receive </Text>
+            <Text fontSize={"2xl"} ml={isLargerThan1000 ? "0%" : "25%"}>
+              {" "}
+              Give and Receive{" "}
+            </Text>
 
             <Text
               bgGradient="linear(to-l, #8000ff ,#8000f0)"
               bgClip="text"
-              fontSize={isLargerThan1000 ? "8xl" : "3xl"}
+              fontSize={{
+                sm: "5xl",
+                md: "5xl",
+                lg: "8xl",
+              }}
+              ml={isLargerThan1000 ? "0%" : "25%"}
             >
               {" "}
               Anonymous Feedbacks
@@ -72,16 +87,16 @@ const LoginPage = () => {
           </Flex>
         </Box>
         <Box
-          width={isLargerThan1000 ? "50%" : "100%"}
-          height={isLargerThan1000 ? "50%" : "100%"}
+          width={{
+            md: "100%",
+            lg: "50%",
+          }}
+          height={{
+            md: "100%",
+            lg: "50%",
+          }}
         >
-          <Lottie
-            animationData={UserGraph}
-            loop={false}
-            autoPlay={false}
-            width={isLargerThan1000 ? "50%" : "100%"}
-            height={isLargerThan1000 ? "50%" : "100%"}
-          />
+          <Lottie animationData={UserGraph} loop={false} autoPlay={false} />
         </Box>
       </Flex>
       <Divider height={1} />

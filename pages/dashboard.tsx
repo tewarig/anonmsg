@@ -17,7 +17,10 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import User from "./Comp/user";
+import Lottie from "lottie-react";
+import copy from "copy-to-clipboard";
 import { withAuthRequired } from "@supabase/supabase-auth-helpers/nextjs";
+
 import { useAppSelector, useAppDispatch } from "../hooks/store";
 
 import { getUser } from "../slices/userSlice";
@@ -27,6 +30,9 @@ import MessageDialog from "./Comp/messageDialog";
 import getUserName from "../hooks/getUserName";
 import { setUserName } from "../slices/userNameSlice";
 import { LinkIcon, CopyIcon } from "@chakra-ui/icons";
+import { ToastContainer, toast } from "react-toastify";
+import Share from "../lottie/social.json";
+import messageValues from "../const";
 
 export default function Dashboard() {
   const userData = useAppSelector((state) => state.user);
@@ -38,6 +44,14 @@ export default function Dashboard() {
 
   dispatch(getUser());
   dispatch(setUserName());
+  const copyToClipBoard = () => {
+    if (userName === "") {
+      toast.error(messageValues.userNameError);
+    } else {
+      copy(siteUrl);
+      toast.success(messageValues.copyToClipBoardSucess);
+    }
+  };
 
   return (
     <Box bg="#fdfaff" w="100%" height={"100%"} p={10} alignContent={"center"}>
@@ -79,6 +93,8 @@ export default function Dashboard() {
           <DrawerCloseButton />
           <DrawerHeader backgroundColor={"#fdfaff"}>Share </DrawerHeader>
 
+          <Lottie animationData={Share} loop={true} autoPlay={true} />
+
           <DrawerBody backgroundColor={"#fdfaff"}>
             Hello👋 , {userData.fullName} <br />
             Share this url with your friends , family or on Social Media to get
@@ -95,7 +111,17 @@ export default function Dashboard() {
               <Center>
                 {" "}
                 {siteUrl.slice(0, 32)}...{" "}
-                <Button colorScheme={"purple"} ml="2" >
+                <Button
+                  colorScheme={"purple"}
+                  ml={{
+                    sm: "40px",
+                    md: "40px",
+                    lg: "60px",
+                  }}
+                  onClick={() => {
+                    copyToClipBoard();
+                  }}
+                >
                   {" "}
                   <Icon as={CopyIcon} />
                 </Button>
