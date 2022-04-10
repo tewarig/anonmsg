@@ -11,6 +11,7 @@ import messageValues from "../const";
 
 export default function Profile() {
   const { userName } = getUserName();
+  const userData = useAppSelector((state) => state.user);
 
   const [userNameInput, setUserNameInput] = useState<string>();
   const userProfile = useAppSelector((state) => state.user.avatarUrl);
@@ -23,6 +24,12 @@ export default function Profile() {
       Router.push("/dashboard");
     }
   }, [userName]);
+  useEffect(() => {
+    if (userData === {}) {
+      Router.push("/");
+    }
+  }, [userData]);
+
   function getUserToken() {
     if (typeof window !== "undefined") {
       const token = JSON.parse(localStorage.getItem("userToken") || " ");

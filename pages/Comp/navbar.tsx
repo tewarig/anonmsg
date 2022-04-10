@@ -87,7 +87,7 @@ export default function Nav() {
             <Auth
               onlyThirdPartyProviders={true}
               supabaseClient={supabaseClient}
-              providers={["google", "github", "twitter"]}
+              providers={["google", "github"]}
               socialLayout="vertical"
               socialButtonSize="xlarge"
             />
