@@ -23,7 +23,7 @@ import { supabaseClient } from "@supabase/supabase-auth-helpers/nextjs";
 import Router from "next/router";
 import { Divider } from "@supabase/ui";
 import Lottie from "lottie-react";
-import hello from "../lottie/lf20_tvitrmm4.json";
+import hello from "../../lottie/lf20_tvitrmm4.json";
 
 export default function Nav() {
   const { colorMode, toggleColorMode } = useColorMode();

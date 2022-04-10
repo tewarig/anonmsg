@@ -1,5 +1,5 @@
 import React from "react";
-import getMessage from "../hooks/getMessage";
+import getMessage from "../../hooks/getMessage";
 import MessageBox from "./messageBox";
 
 function MessageDialog() {

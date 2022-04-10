@@ -4,12 +4,12 @@ import { supabaseClient } from "@supabase/supabase-auth-helpers/nextjs";
 import type { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Provider } from "react-redux";
-import { store } from "./store/store";
+import { store } from "../store/store";
 import router, { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Nav from "./Comp/navbar";
-import { fetchToken, onMessageListener } from "./lib/firebase";
+import { fetchToken, onMessageListener } from "../lib/firebase";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./Comp/footer";
 

@@ -11,9 +11,9 @@ import {
 } from "@chakra-ui/react";
 import Lottie from "lottie-react";
 import Router from "next/router";
-import UserGraph from "./lottie/lf30_editor_tvgs26zl.json";
-import socialMedia from "./lottie/socialMedia.json";
-import think from "./lottie/think.json";
+import UserGraph from "../lottie/lf30_editor_tvgs26zl.json";
+import socialMedia from "../lottie/socialMedia.json";
+import think from "../lottie/think.json";
 
 const LoginPage = () => {
   const { user, error } = useUser();
@@ -155,7 +155,11 @@ const LoginPage = () => {
             width={isLargerThan1000 ? "50%" : "100%"}
             height={isLargerThan1000 ? "50%" : "100%"}
           >
-            <Flex flexDirection={isLargerThan1000 ? "column" : "row"} margin="5%" mt="10%">
+            <Flex
+              flexDirection={isLargerThan1000 ? "column" : "row"}
+              margin="5%"
+              mt="10%"
+            >
               <Text
                 fontSize={isLargerThan1000 ? "5xl" : "xl"}
                 mt="20%"

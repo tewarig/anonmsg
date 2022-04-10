@@ -3,9 +3,9 @@ import { supabaseClient } from "@supabase/supabase-auth-helpers/nextjs";
 import { Button, Input, Text, Box } from "@chakra-ui/react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useAppSelector } from "./hooks/store";
+import { useAppSelector } from "../hooks/store";
 import Router from "next/router";
-import getUserName from "./hooks/getUserName";
+import getUserName from "../hooks/getUserName";
 
 import messageValues from "../const";
 
