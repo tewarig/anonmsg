@@ -1,7 +1,14 @@
 import { useUser, Auth } from "@supabase/supabase-auth-helpers/react";
 import { supabaseClient } from "@supabase/supabase-auth-helpers/nextjs";
 import React, { useEffect, useState } from "react";
-import { Box, Flex, Text, Center, Divider } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Text,
+  Center,
+  Divider,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import Lottie from "lottie-react";
 import Router from "next/router";
 import UserGraph from "./lottie/lf30_editor_tvgs26zl.json";
@@ -11,6 +18,7 @@ import think from "./lottie/think.json";
 const LoginPage = () => {
   const { user, error } = useUser();
   const [data, setData] = useState({});
+  const [isLargerThan1000] = useMediaQuery("(min-width: 1000px)");
 
   useEffect(() => {
     async function loadData() {
@@ -45,28 +53,34 @@ const LoginPage = () => {
 
   return (
     <React.Fragment>
-      <Flex>
-        <Box width={"50%"} height={"50%"}>
+      <Flex flexDirection={isLargerThan1000 ? "row" : "column"}>
+        <Box
+          width={isLargerThan1000 ? "50%" : "100%"}
+          height={isLargerThan1000 ? "50%" : "100%"}
+        >
           <Flex flexDirection={"column"} margin="5%" mt="30%">
             <Text fontSize={"2xl"}> Give and Receive </Text>
 
             <Text
               bgGradient="linear(to-l, #8000ff ,#8000f0)"
               bgClip="text"
-              fontSize="8xl"
+              fontSize={isLargerThan1000 ? "8xl" : "3xl"}
             >
               {" "}
               Anonymous Feedbacks
             </Text>
           </Flex>
         </Box>
-        <Box width={"50%"} height={"50%"}>
+        <Box
+          width={isLargerThan1000 ? "50%" : "100%"}
+          height={isLargerThan1000 ? "50%" : "100%"}
+        >
           <Lottie
             animationData={UserGraph}
             loop={false}
             autoPlay={false}
-            width="50%"
-            height={"50%"}
+            width={isLargerThan1000 ? "50%" : "100%"}
+            height={isLargerThan1000 ? "50%" : "100%"}
           />
         </Box>
       </Flex>
@@ -80,8 +94,11 @@ const LoginPage = () => {
         <br />
         <br />
         <br />
-        <Flex>
-          <Box width="50%" height="50%">
+        <Flex flexDirection={isLargerThan1000 ? "row" : "column"}>
+          <Box
+            width={isLargerThan1000 ? "50%" : "100%"}
+            height={isLargerThan1000 ? "50%" : "100%"}
+          >
             <Lottie
               animationData={socialMedia}
               loop={true}
@@ -90,19 +107,36 @@ const LoginPage = () => {
               height={"50%"}
             />
           </Box>
-          <Box width={"50%"} height={"50%"}>
-            <Flex flexDirection={"column"} margin="5%" mt="10%">
-              <Text fontSize={"5xl"} color="white">
-                {" "}
-                Say directly without hesitation anonymously.
-              </Text>
+          <Box
+            width={isLargerThan1000 ? "50%" : "100%"}
+            height={isLargerThan1000 ? "50%" : "100%"}
+          >
+            <Flex
+              flexDirection={"column"}
+              margin={isLargerThan1000 ? "5%" : "0%"}
+              mt="10%"
+            >
+              <Center>
+                <Text fontSize={isLargerThan1000 ? "5xl" : "xl"} color="white">
+                  {" "}
+                  Say directly without hesitation anonymously.
+                </Text>
+              </Center>
               <br />
               <br />
-              <Text color="white" fontSize={"xl"} mt="5%">
-                {" "}
-                People tend to speak more openly when they are anonymously. This
-                way they don't get judged and the receiver get a true feedback.
-              </Text>
+              <Center>
+                <Text
+                  color="white"
+                  fontSize={"xl"}
+                  mt={isLargerThan1000 ? "5%" : "0%"}
+                  margin="5px"
+                >
+                  {" "}
+                  People tend to speak more openly when they are anonymously.
+                  This way they don't get judged and the receiver get a true
+                  feedback.
+                </Text>
+              </Center>
             </Flex>
           </Box>
         </Flex>
@@ -110,7 +144,6 @@ const LoginPage = () => {
         <br />
         <br />
         <br />
-       
       </Box>
       <Box>
         <br />
@@ -118,9 +151,16 @@ const LoginPage = () => {
         <br />
         <br />
         <Flex>
-          <Box width={"50%"} height={"50%"}>
-            <Flex flexDirection={"column"} margin="5%" mt="10%">
-              <Text fontSize={"5xl"} mt="20%" ml="10%">
+          <Box
+            width={isLargerThan1000 ? "50%" : "100%"}
+            height={isLargerThan1000 ? "50%" : "100%"}
+          >
+            <Flex flexDirection={isLargerThan1000 ? "column" : "row"} margin="5%" mt="10%">
+              <Text
+                fontSize={isLargerThan1000 ? "5xl" : "xl"}
+                mt="20%"
+                ml="10%"
+              >
                 {" "}
                 People tends to think more about feedback when it is without any
                 name or label.
@@ -129,7 +169,10 @@ const LoginPage = () => {
               <br />
             </Flex>
           </Box>
-          <Box width="50%" height="50%">
+          <Box
+            width={isLargerThan1000 ? "50%" : "100%"}
+            height={isLargerThan1000 ? "50%" : "100%"}
+          >
             <Lottie
               animationData={think}
               loop={true}
