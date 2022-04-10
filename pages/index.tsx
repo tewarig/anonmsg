@@ -14,6 +14,8 @@ import Router from "next/router";
 import UserGraph from "../lottie/lf30_editor_tvgs26zl.json";
 import socialMedia from "../lottie/socialMedia.json";
 import think from "../lottie/think.json";
+import dynamic from "next/dynamic";
+import NoSSR from "./Comp/noSSR";
 
 const LoginPage = () => {
   const { user, error } = useUser();
@@ -53,156 +55,161 @@ const LoginPage = () => {
   };
 
   return (
-    <React.Fragment>
-      <Flex flexDirection={isLargerThan1000 ? "row" : "column-reverse"}>
-        <Box
-          width={{
-            md: "100%",
-            lg: "50%",
-          }}
-          height={{
-            md: "100",
-            lg: "50%",
-          }}
-        >
-          <Flex flexDirection={"column"} margin="5%" mt="30%">
-            <Text fontSize={"2xl"} ml={isLargerThan1000 ? "0%" : "25%"}>
-              {" "}
-              Give and Receive{" "}
-            </Text>
+    <NoSSR>
+      <React.Fragment>
+        <Flex flexDirection={isLargerThan1000 ? "row" : "column-reverse"}>
+          <Box
+            width={{
+              md: "100%",
+              lg: "50%",
+            }}
+            height={{
+              md: "100",
+              lg: "50%",
+            }}
+          >
+            <Flex flexDirection={"column"} margin="5%" mt="30%">
+              <Text fontSize={"2xl"} ml={isLargerThan1000 ? "0%" : "25%"}>
+                {" "}
+                Give and Receive{" "}
+              </Text>
 
-            <Text
-              bgGradient="linear(to-l, #8000ff ,#8000f0)"
-              bgClip="text"
-              fontSize={{
-                sm: "5xl",
-                md: "5xl",
-                lg: "8xl",
-              }}
-              ml={isLargerThan1000 ? "0%" : "25%"}
-            >
-              {" "}
-              Anonymous Feedbacks
-            </Text>
-          </Flex>
-        </Box>
-        <Box
-          width={{
-            md: "100%",
-            lg: "50%",
-          }}
-          height={{
-            md: "100%",
-            lg: "50%",
-          }}
-        >
-          <Lottie animationData={UserGraph} loop={false} autoPlay={false} />
-        </Box>
-      </Flex>
-      <Divider height={1} />
-      <Box bgGradient="linear(to-l, #8000ff ,#8000f0)">
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <Flex flexDirection={isLargerThan1000 ? "row" : "column"}>
-          <Box
-            width={isLargerThan1000 ? "50%" : "100%"}
-            height={isLargerThan1000 ? "50%" : "100%"}
-          >
-            <Lottie
-              animationData={socialMedia}
-              loop={true}
-              autoPlay={true}
-              width="50%"
-              height={"50%"}
-            />
-          </Box>
-          <Box
-            width={isLargerThan1000 ? "50%" : "100%"}
-            height={isLargerThan1000 ? "50%" : "100%"}
-          >
-            <Flex
-              flexDirection={"column"}
-              margin={isLargerThan1000 ? "5%" : "0%"}
-              mt="10%"
-            >
-              <Center>
-                <Text fontSize={isLargerThan1000 ? "5xl" : "xl"} color="white">
-                  {" "}
-                  Say directly without hesitation anonymously.
-                </Text>
-              </Center>
-              <br />
-              <br />
-              <Center>
-                <Text
-                  color="white"
-                  fontSize={"xl"}
-                  mt={isLargerThan1000 ? "5%" : "0%"}
-                  margin="5px"
-                >
-                  {" "}
-                  People tend to speak more openly when they are anonymously.
-                  This way they don't get judged and the receiver get a true
-                  feedback.
-                </Text>
-              </Center>
-            </Flex>
-          </Box>
-        </Flex>
-        <br />
-        <br />
-        <br />
-        <br />
-      </Box>
-      <Box>
-        <br />
-        <br />
-        <br />
-        <br />
-        <Flex>
-          <Box
-            width={isLargerThan1000 ? "50%" : "100%"}
-            height={isLargerThan1000 ? "50%" : "100%"}
-          >
-            <Flex
-              flexDirection={isLargerThan1000 ? "column" : "row"}
-              margin="5%"
-              mt="10%"
-            >
               <Text
-                fontSize={isLargerThan1000 ? "5xl" : "xl"}
-                mt="20%"
-                ml="10%"
+                bgGradient="linear(to-l, #8000ff ,#8000f0)"
+                bgClip="text"
+                fontSize={{
+                  sm: "5xl",
+                  md: "5xl",
+                  lg: "8xl",
+                }}
+                ml={isLargerThan1000 ? "0%" : "25%"}
               >
                 {" "}
-                People tends to think more about feedback when it is without any
-                name or label.
+                Anonymous Feedbacks
               </Text>
-              <br />
-              <br />
             </Flex>
           </Box>
           <Box
-            width={isLargerThan1000 ? "50%" : "100%"}
-            height={isLargerThan1000 ? "50%" : "100%"}
+            width={{
+              md: "100%",
+              lg: "50%",
+            }}
+            height={{
+              md: "100%",
+              lg: "50%",
+            }}
           >
-            <Lottie
-              animationData={think}
-              loop={true}
-              autoPlay={true}
-              width="50%"
-              height={"50%"}
-            />
+            <Lottie animationData={UserGraph} loop={false} autoPlay={false} />
           </Box>
         </Flex>
-      </Box>
-    </React.Fragment>
+        <Divider height={1} />
+        <Box bgGradient="linear(to-l, #8000ff ,#8000f0)">
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <Flex flexDirection={isLargerThan1000 ? "row" : "column"}>
+            <Box
+              width={isLargerThan1000 ? "50%" : "100%"}
+              height={isLargerThan1000 ? "50%" : "100%"}
+            >
+              <Lottie
+                animationData={socialMedia}
+                loop={true}
+                autoPlay={true}
+                width="50%"
+                height={"50%"}
+              />
+            </Box>
+            <Box
+              width={isLargerThan1000 ? "50%" : "100%"}
+              height={isLargerThan1000 ? "50%" : "100%"}
+            >
+              <Flex
+                flexDirection={"column"}
+                margin={isLargerThan1000 ? "5%" : "0%"}
+                mt="10%"
+              >
+                <Center>
+                  <Text
+                    fontSize={isLargerThan1000 ? "5xl" : "xl"}
+                    color="white"
+                  >
+                    {" "}
+                    Say directly without hesitation anonymously.
+                  </Text>
+                </Center>
+                <br />
+                <br />
+                <Center>
+                  <Text
+                    color="white"
+                    fontSize={"xl"}
+                    mt={isLargerThan1000 ? "5%" : "0%"}
+                    margin="5px"
+                  >
+                    {" "}
+                    People tend to speak more openly when they are anonymously.
+                    This way they don't get judged and the receiver get a true
+                    feedback.
+                  </Text>
+                </Center>
+              </Flex>
+            </Box>
+          </Flex>
+          <br />
+          <br />
+          <br />
+          <br />
+        </Box>
+        <Box>
+          <br />
+          <br />
+          <br />
+          <br />
+          <Flex>
+            <Box
+              width={isLargerThan1000 ? "50%" : "100%"}
+              height={isLargerThan1000 ? "50%" : "100%"}
+            >
+              <Flex
+                flexDirection={isLargerThan1000 ? "column" : "row"}
+                margin="5%"
+                mt="10%"
+              >
+                <Text
+                  fontSize={isLargerThan1000 ? "5xl" : "xl"}
+                  mt="20%"
+                  ml="10%"
+                >
+                  {" "}
+                  People tends to think more about feedback when it is without
+                  any name or label.
+                </Text>
+                <br />
+                <br />
+              </Flex>
+            </Box>
+            <Box
+              width={isLargerThan1000 ? "50%" : "100%"}
+              height={isLargerThan1000 ? "50%" : "100%"}
+            >
+              <Lottie
+                animationData={think}
+                loop={true}
+                autoPlay={true}
+                width="50%"
+                height={"50%"}
+              />
+            </Box>
+          </Flex>
+        </Box>
+      </React.Fragment>
+    </NoSSR>
   );
 };
 
