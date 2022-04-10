@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Center,
@@ -33,6 +33,7 @@ import { LinkIcon, CopyIcon } from "@chakra-ui/icons";
 import { ToastContainer, toast } from "react-toastify";
 import Share from "../lottie/social.json";
 import messageValues from "../const";
+import { Router } from "next/router";
 
 export default function Dashboard() {
   const userData = useAppSelector((state) => state.user);
@@ -52,6 +53,11 @@ export default function Dashboard() {
       toast.success(messageValues.copyToClipBoardSucess);
     }
   };
+  useEffect(() => {
+    if (userData === {}) {
+      Router.push("/");
+    }
+  }, [userData]);
 
   return (
     <Box bg="#fdfaff" w="100%" height={"100%"} p={10} alignContent={"center"}>
