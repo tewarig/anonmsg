@@ -46,7 +46,6 @@ export default function Profile() {
       toast.error(messageValues.userNameEmptyWarning);
     }
   }
-  console.log(getUserToken());
 
   async function putValueInDataBase() {
     const { data, error } = await supabaseClient.from("userData").insert([

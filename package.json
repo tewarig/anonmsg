@@ -14,6 +14,7 @@
     "@reduxjs/toolkit": "^1.8.1",
     "@supabase/supabase-auth-helpers": "^1.0.6",
     "@types/react": "^18.0.0",
+    "axios": "^0.26.1",
     "fcm-node": "^1.6.1",
     "firebase": "^9.6.10",
     "firebase-admin": "^10.0.2",

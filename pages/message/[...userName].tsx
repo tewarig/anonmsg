@@ -19,6 +19,7 @@ import { ChevronRightIcon } from "@chakra-ui/icons";
 import Confetti from "react-confetti";
 import useWindowSize from "react-use/lib/useWindowSize";
 import messageValues from "../../const";
+import axios from "axios";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -32,6 +33,8 @@ function Message() {
   const [error, setError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [isLargerThan1000] = useMediaQuery("(min-width: 1000px)");
+
+  const authKey = process.env.NEXT_PUBLIC_AUTH_KEY;
 
   async function getUserData() {
     const { data, error } = await supabaseClient
@@ -68,6 +71,23 @@ function Message() {
         .insert([{ message: message, hint: hint, userName: userName?.[0] }]);
 
       setShowConfetti(true);
+    
+      axios({
+        method: "post",
+        url: "https://fcm.googleapis.com/fcm/send",
+        headers: {
+          "Content-Type": "application/json",
+         "Authorization": authKey,
+        },
+        data: {
+          to: userData.userToken,
+          notification: {
+            body: "You have a new Message in Anon msg",
+            title: "Some Messeged You",
+            subtitle: "You have a new Message in Anon msg",
+          },
+        },
+      });
       setTimeout(() => {
         setShowConfetti(false);
       }, 6000);

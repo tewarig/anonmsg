@@ -14,21 +14,13 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const [isTokenFound, setTokenFound] = useState(false);
-  const [token, setToken] = useState<string>();
 
   useEffect(() => {
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", function () {
         navigator.serviceWorker.register("/firebase-messaging-sw.js").then(
-          function (registration) {
-            console.log(
-              "Service Worker registration successful with scope: ",
-              registration.scope
-            );
-          },
-          function (err) {
-            console.log("Service Worker registration failed: ", err);
-          }
+          function (registration) {},
+          function (err) {}
         );
       });
     }
@@ -42,8 +34,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     }, 2000);
   });
 
- fetchToken(setTokenFound);
- 
+  fetchToken(setTokenFound);
 
   return (
     <ChakraProvider>
