@@ -10,7 +10,6 @@ import {
   Spinner,
   useMediaQuery,
 } from "@chakra-ui/react";
-import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Avatar, Wrap, WrapItem, Text } from "@chakra-ui/react";
 import { supabaseClient } from "@supabase/supabase-auth-helpers/nextjs";
 import { useRouter } from "next/router";

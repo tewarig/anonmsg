@@ -50,7 +50,7 @@ function User(props: userProps) {
       </Center>
       <Center>
         {fullName === "" && (
-          <Button mt="5" colorScheme={"green"}>
+          <Button mt="5" colorScheme={"purple"}>
             <Link href="/profile">
               <a>
                 <Text> You Need to set a user Name First </Text>

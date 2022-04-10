@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Center, Text, Divider } from "@chakra-ui/react";
+import { Box, Center, Text, Divider, Button, Icon } from "@chakra-ui/react";
 import User from "./Comp/user";
 import { withAuthRequired } from "@supabase/supabase-auth-helpers/nextjs";
 import { useAppSelector, useAppDispatch } from "./hooks/store";
@@ -10,6 +10,7 @@ import getMessage from "./hooks/getMessage";
 import MessageDialog from "./Comp/messageDialog";
 import getUserName from "./hooks/getUserName";
 import { setUserName } from "./slices/userNameSlice";
+import { LinkIcon } from "@chakra-ui/icons";
 
 export default function Dashboard() {
   const userData = useAppSelector((state) => state.user);
@@ -42,6 +43,17 @@ export default function Dashboard() {
       <Divider bgGradient="linear(to-l,  #8000ff , #8000f0)" />
       <br />
       <MessageDialog />
+      <Button
+        colorScheme={"purple"}
+        variant="outline"
+        position={"fixed"}
+        bottom="5px"
+        right="5px"
+        borderRadius="5px"
+      >
+        {" "}
+        <Icon as={LinkIcon} />
+      </Button>
     </Box>
   );
 }

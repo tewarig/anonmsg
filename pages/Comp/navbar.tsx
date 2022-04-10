@@ -17,26 +17,10 @@ import {
   DrawerFooter,
   DrawerBody,
 } from "@chakra-ui/react";
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { useUser, Auth } from "@supabase/supabase-auth-helpers/react";
 import { supabaseClient } from "@supabase/supabase-auth-helpers/nextjs";
 import Router from "next/router";
 import { Divider } from "@supabase/ui";
-
-const NavLink = ({ children }: { children: ReactNode }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={"md"}
-    _hover={{
-      textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
-    }}
-    href={"#"}
-  >
-    {children}
-  </Link>
-);
 
 export default function Nav() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -73,14 +57,6 @@ export default function Nav() {
 
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
-              {/* <Button onClick={toggleColorMode}>
-                {colorMode === "light" ? (
-                  <MoonIcon color="blue.300" />
-                ) : (
-                  <SunIcon color="yellow" />
-                )}
-              </Button> */}
-
               {user && <Button onClick={() => logOut()}>Log Out</Button>}
               {!user && <Button onClick={onOpen}> Login </Button>}
             </Stack>
