@@ -63,7 +63,7 @@ function MessageBox(props: MessageBoxProps) {
               flexDirection={"row"}
               onClick={onOpen}
             >
-              <Text color="#333">{message}</Text>
+              <Text color="#333">{messageHint}</Text>
             </Flex>
           </DrawerBody>
 
