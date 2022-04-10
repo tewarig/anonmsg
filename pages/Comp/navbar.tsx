@@ -16,11 +16,14 @@ import {
   DrawerHeader,
   DrawerFooter,
   DrawerBody,
+  Badge,
 } from "@chakra-ui/react";
 import { useUser, Auth } from "@supabase/supabase-auth-helpers/react";
 import { supabaseClient } from "@supabase/supabase-auth-helpers/nextjs";
 import Router from "next/router";
 import { Divider } from "@supabase/ui";
+import Lottie from "lottie-react";
+import hello from "../lottie/lf20_tvitrmm4.json";
 
 export default function Nav() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -45,14 +48,16 @@ export default function Nav() {
       <Box bg={useColorModeValue("white", "gray.900")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>
-            <Text
-              bgGradient="linear(to-l, #8000ff ,#8000f0)"
-              bgClip="text"
-              fontSize="xl"
-            >
-              {" "}
-              AnonMsg
-            </Text>
+            <Flex>
+              <Text
+                bgGradient="linear(to-l, #8000ff ,#8000f0)"
+                bgClip="text"
+                fontSize="xl"
+              >
+                {" "}
+                AnonMsg <Badge borderRadius={"8%"}>Beta</Badge>
+              </Text>
+            </Flex>
           </Box>
 
           <Flex alignItems={"center"}>
@@ -63,7 +68,8 @@ export default function Nav() {
           </Flex>
         </Flex>
       </Box>
-      <Divider />
+      <Divider colorScheme="purple" height={2} />
+
       <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="sm">
         <DrawerOverlay />
         <DrawerContent>
@@ -71,8 +77,15 @@ export default function Nav() {
           <DrawerHeader></DrawerHeader>
 
           <DrawerBody>
+            <Lottie
+              animationData={hello}
+              loop={false}
+              autoPlay={false}
+              width="50%"
+              height={"50%"}
+            />
             <Auth
-              onlyThirdPartyProviders={false}
+              onlyThirdPartyProviders={true}
               supabaseClient={supabaseClient}
               providers={["google", "github", "twitter"]}
               socialLayout="vertical"

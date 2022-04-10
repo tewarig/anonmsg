@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Nav from "./Comp/navbar";
 import { fetchToken, onMessageListener } from "./lib/firebase";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "./Comp/footer";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const [isTokenFound, setTokenFound] = useState(false);
@@ -43,6 +44,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <Provider store={store}>
           <Component {...pageProps} />
         </Provider>
+        <Footer />
       </UserProvider>
       <ToastContainer />
     </ChakraProvider>
