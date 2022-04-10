@@ -41,7 +41,7 @@ export default function Nav() {
   }, [user]);
   const logOut = () => {
     supabaseClient.auth.signOut();
-    Router.push("/");
+    Router.push(`${process.env.NEXT_PUBLIC_SITE_URL}`);
   };
   return (
     <>

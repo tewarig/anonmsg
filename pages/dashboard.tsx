@@ -55,7 +55,7 @@ export default function Dashboard() {
   };
   useEffect(() => {
     if (userData === {}) {
-      Router.push("/");
+      Router.push(`${process.env.NEXT_PUBLIC_SITE_URL}`);
     }
   }, [userData]);
 
