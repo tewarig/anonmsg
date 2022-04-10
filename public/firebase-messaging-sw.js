@@ -26,10 +26,30 @@ messaging.onBackgroundMessage(function (payload) {
   const notificationTitle = payload.notification.title || payload.data.title;
   const notificationOptions = {
     body: payload.notification.body || payload.data.subtitle || "",
-    icon: "https://firebasestorage.googleapis.com/v0/b/yes-4-web.appspot.com/o/pontonos%2Ficons%2Fandroid-chrome-192x192.png?alt=media&token=35616a6b-5e70-43a0-9284-d780793fa076",
+    icon: "https://citizensociolinguistics.files.wordpress.com/2017/04/screen-shot-2017-04-17-at-12-28-04-pm.png",
     data: payload.data,
   };
 
+  self.addEventListener("notificationclick", function (event) {
+    let url = "https://www.anonmsg.fun/";
+    event.notification.close(); // Android needs explicit close.
+    event.waitUntil(
+      clients.matchAll({ type: "window" }).then((windowClients) => {
+        // Check if there is already a window/tab open with the target URL
+        for (var i = 0; i < windowClients.length; i++) {
+          var client = windowClients[i];
+          // If so, just focus it.
+          if (client.url === url && "focus" in client) {
+            return client.focus();
+          }
+        }
+        // If not, then open the target URL in a new window/tab.
+        if (clients.openWindow) {
+          return clients.openWindow(url);
+        }
+      })
+    );
+  });
   return self.registration.showNotification(
     notificationTitle,
     notificationOptions
