@@ -33,7 +33,8 @@ export default function Profile() {
 
   function getUserToken() {
     if (typeof window !== "undefined") {
-      const token = JSON.parse(localStorage.getItem("userToken") || " ");
+      const token = JSON.parse(localStorage.getItem("userToken")) || " ";
+
       return token;
     }
   }
@@ -44,7 +45,6 @@ export default function Profile() {
         .from("userData")
         .select()
         .eq("userName", userNameInput);
-      console.log(data);
       if (data?.length === 0) {
         putValueInDataBase();
       } else {
@@ -61,10 +61,14 @@ export default function Profile() {
         userName: userNameInput,
         userProfile: userProfile,
         email: userEmail,
-        userToken: getUserToken(),
+        userToken: getUserToken() ?? "",
       },
     ]);
-    console.log(data);
+    if (error) {
+      toast.error(error);
+      return;
+    }
+
     toast.success(messageValues.userNameSucessWarning);
     setTimeout(() => {
       Router.push("/dashboard");
