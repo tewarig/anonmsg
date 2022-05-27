@@ -59,7 +59,7 @@ export default function Nav() {
                 onClick={redicet}
               >
                 {" "}
-                AnonMsg <Badge borderRadius={"8%"}>Beta</Badge>
+                AnonMsg 
               </Text>
             </Flex>
           </Box>
