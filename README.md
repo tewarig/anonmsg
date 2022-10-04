@@ -52,7 +52,7 @@ git clone https://github.com/tewarig/anonmsg.git
 2. Change the working directory
 
 ```bash
-cd MeowForm
+cd anonmsg
 ```
 
 3. Install dependencies
